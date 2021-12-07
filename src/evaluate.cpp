@@ -281,7 +281,7 @@ namespace {
   constexpr Score WeakQueenProtection = S( 14,  0);
   constexpr Score WeakQueen           = S( 56, 15);
 
-  TUNE(SetRange(0, 100), Hanging, SetRange(0, 200),PawnlessFlank, SetRange(0, 100), ThreatByPawnPush);
+  TUNE(SetRange(0, 200), Hanging, PawnlessFlank, ThreatByPawnPush);
 
 #undef S
 
