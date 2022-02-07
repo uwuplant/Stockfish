@@ -73,7 +73,7 @@ void TimeManagement::init(Position& pos, Search::LimitsType& limits, Color us, i
 
   // Scale time with current complexity.
   int complexity = pos.this_thread()->complexityAverage.value();
-  optExtra *= std::clamp(1.0 + (complexity - 232) / 2500, 1.0, 1.5);
+  optExtra *= std::clamp(1.0 + (complexity - 232) / 2000, 0.9, 1.5);
 
   // A user may scale time usage by setting UCI option "Slow Mover"
   // Default is 100 and changing this value will probably lose elo.
