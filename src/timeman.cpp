@@ -34,7 +34,7 @@ TimeManagement Time; // Our global time management object
 //      1) x basetime (+ z increment)
 //      2) x moves in y seconds (+ z increment)
 
-void TimeManagement::init(Search::LimitsType& limits, Color us, int ply) {
+void TimeManagement::init(Position& pos, Search::LimitsType& limits, Color us, int ply) {
 
   TimePoint moveOverhead    = TimePoint(Options["Move Overhead"]);
   TimePoint slowMover       = TimePoint(Options["Slow Mover"]);
@@ -70,6 +70,10 @@ void TimeManagement::init(Search::LimitsType& limits, Color us, int ply) {
 
   // Use extra time with larger increments
   double optExtra = std::clamp(1.0 + 12.0 * limits.inc[us] / limits.time[us], 1.0, 1.12);
+
+  // Scale time with current complexity.
+  int complexity = pos.this_thread()->complexityAverage.value();
+  optExtra *= std::clamp(1.0 + (complexity - 232) / 2500, 1.0, 1.5);
 
   // A user may scale time usage by setting UCI option "Slow Mover"
   // Default is 100 and changing this value will probably lose elo.
