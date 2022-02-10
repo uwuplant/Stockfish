@@ -35,12 +35,10 @@ TimeManagement Time; // Our global time management object
 //      2) x moves in y seconds (+ z increment)
 
 int divisor = 1000;
-int min = 100;
-int max = 150;
+int minMul = 80;
+int maxMul = 150;
 
-TUNE(SetRange(1, 3000), divisor);
-TUNE(SetRange(20, 100), min);
-TUNE(SetRange(100, 250), max);
+TUNE(SetRange(1, 3000), divisor, SetRange(20, 100), minMul, SetRange(100, 250), maxMul;
 
 void TimeManagement::init(Position& pos, Search::LimitsType& limits, Color us, int ply) {
 
@@ -86,7 +84,7 @@ void TimeManagement::init(Position& pos, Search::LimitsType& limits, Color us, i
   // Scale time with current complexity.
   int complexity = pos.this_thread()->complexityAverage.value();
   
-  optExtra *= std::clamp(1.0 + (complexity - 312) / divisor, min * 1.0 / 100, max * 1.0 / 100);
+  optExtra *= std::clamp(1.0 + (complexity - 312) / divisor, minMul * 1.0 / 100, maxMul * 1.0 / 100);
 
   // x basetime (+ z increment)
   // If there is a healthy increment, timeLeft can exceed actual available
