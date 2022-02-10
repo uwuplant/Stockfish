@@ -38,7 +38,7 @@ int divisor = 1000;
 int minMul = 80;
 int maxMul = 150;
 
-TUNE(SetRange(1, 3000), divisor, SetRange(20, 100), minMul, SetRange(100, 250), maxMul;
+TUNE(SetRange(1, 3000), divisor, SetRange(20, 100), minMul, SetRange(100, 250), maxMul);
 
 void TimeManagement::init(Position& pos, Search::LimitsType& limits, Color us, int ply) {
 
