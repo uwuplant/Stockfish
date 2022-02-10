@@ -35,8 +35,8 @@ TimeManagement Time; // Our global time management object
 //      2) x moves in y seconds (+ z increment)
 
 int divisor = 1000;
-int min = 1;
-int max = 1;
+int min = 100;
+int max = 150;
 
 TUNE(SetRange(1, 3000), divisor);
 TUNE(SetRange(20, 100), min);
