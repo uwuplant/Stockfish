@@ -58,6 +58,10 @@ using namespace Search;
 
 namespace {
 
+  int base = 2026;
+  int logMul = 1000;
+  TUNE(SetRange(-5000, 5000), base, SetRange(100,5000), logMul);
+
   // Different node types, used as a template parameter
   enum NodeType { NonPV, PV, Root };
 
@@ -160,8 +164,9 @@ namespace {
 
 void Search::init() {
 
-  for (int i = 1; i < MAX_MOVES; ++i)
-      Reductions[i] = int((20.26 + std::log(Threads.size()) / 2) * std::log(i));
+  for (int i = 1; i < MAX_MOVES; ++i) {
+      Reductions[i] = int((base/100 + std::log(Threads.size()) / 2) * std::log(i * logMul/1000));
+  }
 }
 
 
